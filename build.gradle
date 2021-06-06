@@ -1,0 +1,28 @@
+apply plugin: "java"
+apply plugin: "maven-publish"
+
+group = "net.sayaya"
+version = "1.0"
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.mapstruct:mapstruct-processor:1.4.2.Final")
+}
+jar {
+    enabled = true
+    archiveFileName = "mapstruct-fluent-accessor.jar"
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "net.sayaya"
+            artifactId = "mapstruct-fluent-accessor"
+            version = 1.0
+            from components.java
+        }
+    }
+}
